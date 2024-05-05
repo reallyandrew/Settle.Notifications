@@ -15,4 +15,9 @@
     <ProjectReference Include="..\Settle.Notifications\Settle.Notifications.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+			<_Parameter1>Settle.Notifications.Mailgun.Tests</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
 </Project>
