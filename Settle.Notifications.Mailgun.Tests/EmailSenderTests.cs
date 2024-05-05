@@ -12,9 +12,7 @@ namespace Settle.Notifications.Mailgun.Tests;
 public class EmailSenderTests
 {
     private readonly IHttpClientFactory _httpClientFactory;
-    private readonly IConfiguration _configuration;
-    private readonly IConfigurationSection _apiKeySection;
-    private readonly IConfigurationSection _mailgunDomainSection;
+    private readonly Dictionary<string, string?> _settings;
     private readonly MockHttpMessageHandler _httpMessageHandler;
     public class MockHttpMessageHandler : HttpMessageHandler
     {
@@ -43,23 +41,33 @@ public class EmailSenderTests
 
         _httpClientFactory = Substitute.For<IHttpClientFactory>();
         _httpClientFactory.CreateClient(Arg.Any<string>()).Returns(_httpClient);
-        _configuration = Substitute.For<IConfiguration>();
-        _apiKeySection = Substitute.For<IConfigurationSection>();
-        _configuration.GetSection("notifications:mailgun:apikey").Returns(_apiKeySection);
-        _mailgunDomainSection = Substitute.For<IConfigurationSection>();
-        _configuration.GetSection("notifications:mailgun:domain").Returns(_mailgunDomainSection);
+        _settings = new Dictionary<string, string?>
+        {
+            { "Notifications:DefaultEmailSender", "example@example.com" },
+            { "Notifications:TestMode:IsEnabled","true" },
+            { "Notifications:TestMode:DefaultRecipient","test@example.com" },
+            { "Notifications:TestMode:AllowedEmailDomains","bloggs.com" },
+            { "Notifications:TestMode:AllowedRecipients","test@test.com" },
+            { "Notifications:Mailgun:ApiKey","ValidApiKey" },
+            { "Notifications:Mailgun:Domain","mg.test.com" },
+            { "Notifications:Mailgun:UseTestModeHeader","true" },
+            { "Notifications:Mailgun:Region","EU" }
+        };
     }
 
     [Fact]
     public async Task SendMessage_Valid_ReturnsSuccess()
     {
         // Arrange
-        _apiKeySection.Value.Returns("pass");
-        _mailgunDomainSection.Value.Returns("domain");
+        _settings["Notifications:Mailgun:ApiKey"] = "ValidApiKey";
+        _settings["Notifications:Mailgun:Domain"] = "domain";
+        IConfiguration configuration = new ConfigurationBuilder()
+            .AddInMemoryCollection(_settings)
+            .Build();
         _httpMessageHandler.ResponseContent = new StringContent(@"{""id"": ""message-id"",""message"": ""Queued. Thank you.""}");
-        _httpMessageHandler.RequestEndpoint = "https://api.mailgun.net/v3/domain/messages";
+        _httpMessageHandler.RequestEndpoint = "https://api.eu.mailgun.net/v3/domain/messages";
 
-        var emailSender = new EmailSender(_httpClientFactory, _configuration);
+        var emailSender = new EmailSender(_httpClientFactory, configuration);
         var recipient = Email.Create("test@test.com");
         var sender = Email.Create("sender@test.com");
         var emailMessage = EmailMessage.Create(recipient.Value, "Test message", "Message body", sender.Value);
@@ -71,16 +79,19 @@ public class EmailSenderTests
         result.IsSuccess.Should().BeTrue();
     }
 
-    
+
     [Fact]
     public void Constructor_MissingPassword_ThrowsMissingConfigurationException()
     {
         // Arrange
-        _apiKeySection.Value.Returns(string.Empty);
-        _mailgunDomainSection.Value.Returns("domain");
+        _settings["Notifications:Mailgun:ApiKey"] = string.Empty;
+        _settings["Notifications:Mailgun:Domain"] = "mg.test.com";
+        IConfiguration configuration = new ConfigurationBuilder()
+            .AddInMemoryCollection(_settings)
+            .Build();
 
         // Act
-        var act = () => new EmailSender(_httpClientFactory, _configuration);
+        var act = () => new EmailSender(_httpClientFactory, configuration);
 
         // Assert
         act.Should().ThrowExactly<MissingConfigurationException>();
@@ -89,11 +100,14 @@ public class EmailSenderTests
     public void Constructor_MissingDomain_ThrowsMissingConfigurationException()
     {
         // Arrange
-        _apiKeySection.Value.Returns("pass");
-        _mailgunDomainSection.Value.ReturnsNull();
+        _settings["Notifications:Mailgun:ApiKey"] = "ValidApiKey";
+        _settings["Notifications:Mailgun:Domain"] = null;
+        IConfiguration configuration = new ConfigurationBuilder()
+            .AddInMemoryCollection(_settings)
+            .Build();
 
         // Act
-        var act = () => new EmailSender(_httpClientFactory, _configuration);
+        var act = () => new EmailSender(_httpClientFactory, configuration);
 
         // Assert
         act.Should().ThrowExactly<MissingConfigurationException>();

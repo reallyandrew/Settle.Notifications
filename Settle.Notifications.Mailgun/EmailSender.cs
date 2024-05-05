@@ -38,7 +38,7 @@ internal sealed class EmailSender : IEmailSender
         }
         _isTestMode = settings.TestMode.IsEnabled;
         _useTestModeHeader = settings.Mailgun.UseTestModeHeader;
-        _domain = settings.Mailgun.Domain;
+        _domain = settings.Mailgun.Domain?? throw new MissingConfigurationException("Domain is not set");
         _baseUrl = settings.Mailgun.Region == MailgunRegion.EU ? "https://api.eu.mailgun.net/v3/" : "https://api.mailgun.net/v3/";
     }
 
