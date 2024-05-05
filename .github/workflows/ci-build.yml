@@ -60,4 +60,4 @@ jobs:
           dotnet dotcover test --configuration ${{ env.CONFIGURATION }} --dcReportType=HTML 
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --no-restore --verbosity normal
