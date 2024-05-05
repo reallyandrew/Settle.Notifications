@@ -9,10 +9,19 @@ public static class EmailValidation
     /// </summary>
     /// <param name="email"></param>
     /// <returns></returns>
-    internal static bool IsValidEmailTest(this string email)
+    internal static bool IsValidEmailTestRegEx(this string email)
     {
         RegExTimeout = TimeSpan.FromMicroseconds(1);
         return email.IsValidEmail();
+    }
+    /// <summary>
+    /// This method is for TestCase use only, it ensures the Regex timeout is 500ms
+    /// </summary>
+    /// <param name="email"></param>
+    /// <returns></returns>
+    internal static void ResetDefaultTimeout()
+    {
+        RegExTimeout = TimeSpan.FromMilliseconds(500);
     }
     /// <summary>
     /// Validates that the provided email address meets the mainstream requirements from RFC5322 and RFC 5321

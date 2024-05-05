@@ -1,10 +1,5 @@
 ﻿using FluentAssertions;
 using Settle.Notifications.Core.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Settle.Notifications.Core.Tests.Primitives;
 public class ValueObjectTests
@@ -61,17 +56,18 @@ public class ValueObjectTests
         result.Should().BeTrue();
     }
     [Theory]
-    [InlineData("email@example.com",null)]
-    [InlineData(null,"email@example.com")]
-    [InlineData("email@example.com","differentemail@example.com")]
-    public void NotEqualsOperator_ShouldBeTrue(string? email1, string? email2) {
+    [InlineData("email@example.com", null)]
+    [InlineData(null, "email@example.com")]
+    [InlineData("email@example.com", "differentemail@example.com")]
+    public void NotEqualsOperator_ShouldBeTrue(string? email1, string? email2)
+    {
         // arrange
-        Email? emailAddress1=null;
-        Email? emailAddress2=null;
-            
+        Email? emailAddress1 = null;
+        Email? emailAddress2 = null;
+
         if (!string.IsNullOrWhiteSpace(email1))
         {
-            var emailResult1= Email.Create(email1);
+            var emailResult1 = Email.Create(email1);
             emailAddress1 = emailResult1.IsSuccess ? emailResult1.Value : null;
         }
         if (!string.IsNullOrWhiteSpace(email2))
@@ -80,7 +76,7 @@ public class ValueObjectTests
             emailAddress2 = emailResult2.IsSuccess ? emailResult2.Value : null;
         }
         // act
-        var result = emailAddress1!=emailAddress2;
+        var result = emailAddress1 != emailAddress2;
 
         // assert
         result.Should().BeTrue();

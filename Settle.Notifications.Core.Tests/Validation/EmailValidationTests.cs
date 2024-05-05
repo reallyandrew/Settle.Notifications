@@ -61,9 +61,10 @@ public class EmailValidationTests
         var email = $"{localPart}@{domain}";
 
         // act
-        var result = email.IsValidEmailTest();
+        var result = email.IsValidEmailTestRegEx();
 
         // assert
         result.Should().BeFalse();
+        EmailValidation.ResetDefaultTimeout();
     }
 }
