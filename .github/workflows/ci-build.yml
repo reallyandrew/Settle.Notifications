@@ -57,4 +57,6 @@ jobs:
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"reallyandrew_Settle.Notifications" /o:"reallyandrew" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build --no-restore
           dotnet test --no-build --verbosity normal
+          dotnet tool install --global JetBrains.dotCover.GlobalTool
+          dotnet dotcover test --configuration ${{ env.CONFIGURATION }} --dcReportType=HTML 
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
