@@ -29,6 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Settle.Notifications.Config
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Settle.Notifications.Tests", "Settle.Notifications.Tests\Settle.Notifications.Tests.csproj", "{900CB916-ABF0-4B78-B4F2-A48E772528C1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution files", "{1FECE01B-42A7-44EC-90E7-D74B66F92678}"
+	ProjectSection(SolutionItems) = preProject
+		Settle.Notifications\readme.md = Settle.Notifications\readme.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
