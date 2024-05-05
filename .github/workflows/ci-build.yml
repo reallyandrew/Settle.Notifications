@@ -58,9 +58,9 @@ jobs:
       shell: powershell
       run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"reallyandrew_Settle.Notifications" /o:"reallyandrew" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.dotcover.reportsPaths=dotCover.Output.html
-          dotnet build --no-restore
+          dotnet build --no-restore --configuration ${{ env.CONFIGURATION }}
           dotnet tool install --global JetBrains.dotCover.GlobalTool
           dotnet dotcover test --configuration ${{ env.CONFIGURATION }} --dcReportType=HTML 
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
     - name: Test
-      run: dotnet test --no-build --no-restore --verbosity normal
+      run: dotnet test --no-build --no-restore --verbosity normal --configuration ${{ env.CONFIGURATION }}
