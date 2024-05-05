@@ -2,9 +2,9 @@ using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using Settle.Notifications.Core;
 using Settle.Notifications.Core.Exceptions;
 using Settle.Notifications.Core.ValueObjects;
+using Settle.Notifications.Emails;
 using System.Net;
 
 namespace Settle.Notifications.Mailgun.Tests;

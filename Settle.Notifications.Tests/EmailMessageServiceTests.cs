@@ -6,6 +6,7 @@ using Settle.Notifications.Core;
 using Settle.Notifications.Core.Exceptions;
 using Settle.Notifications.Core.Shared;
 using Settle.Notifications.Core.ValueObjects;
+using Settle.Notifications.Emails;
 using TestApp;
 
 namespace Settle.Notifications.Tests;

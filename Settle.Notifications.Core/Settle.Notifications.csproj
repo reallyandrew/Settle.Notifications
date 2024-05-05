@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReleaseNotes>Initial preview release</PackageReleaseNotes>
+		<Title>Settle.Notifications.Core</Title>
+		<Authors>reallyandrew</Authors>
+		<Description>Core library for Settle.Notifications which enables sending of email and SMS notifications.</Description>
+		<Copyright>(c) Andrew Settle 2024</Copyright>
+		<PackageProjectUrl>https://github.com/reallyandrew/Settle.Notifications</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/reallyandrew/Settle.Notifications</RepositoryUrl>
+		<Version>0.1.0-alpha1</Version>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+			<_Parameter1>Settle.Notifications.Tests</_Parameter1>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+			<_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0" />
+		<PackageReference Include="Fluid.Core" Version="2.5.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Settle.Notifications.Configuration\Settle.Notifications.Configuration.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="readme.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+</Project>

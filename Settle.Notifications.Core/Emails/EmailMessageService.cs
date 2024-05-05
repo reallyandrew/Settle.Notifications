@@ -1,13 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Settle.Notifications.Configuration;
-using Settle.Notifications.Core;
 using Settle.Notifications.Core.Exceptions;
 using Settle.Notifications.Core.Shared;
 using Settle.Notifications.Core.ValueObjects;
 using Settle.Notifications.Templates;
 
-namespace Settle.Notifications;
+namespace Settle.Notifications.Emails;
 internal class EmailMessageService : IEmailMessageService
 {
     private readonly NotificationsOptions _settings;
@@ -43,7 +42,7 @@ internal class EmailMessageService : IEmailMessageService
         if (!_settings.TestMode.IsEnabled)
         {
             _logger.LogInformation("Notification service test mode is not enabled");
-            return [];
+            return new List<Email>();
         }
         if (string.IsNullOrWhiteSpace(_settings.TestMode.DefaultRecipient))
         {
@@ -60,7 +59,7 @@ internal class EmailMessageService : IEmailMessageService
             }
             recipients.Add(emailResult.Value);
         }
-        _logger.LogInformation("{recipientCount} test recipients found",recipients.Count);
+        _logger.LogInformation("{recipientCount} test recipients found", recipients.Count);
         return recipients;
     }
     private async Task<Result<string>> SendMessageAsync(Result<EmailMessage> emailMessageResult)
@@ -96,13 +95,13 @@ internal class EmailMessageService : IEmailMessageService
 
     public async Task<Result<string>> SendMessageAsync(Email recipient, string subject, string body, string tag)
     {
-        var emailMessage = EmailMessage.Create(recipient, subject, body, _defaultSenderEmail,tag);
+        var emailMessage = EmailMessage.Create(recipient, subject, body, _defaultSenderEmail, tag);
         return await SendMessageAsync(emailMessage);
     }
 
     public async Task<Result<string>> SendMessageWithTemplateAsync(Email recipient, string subject, string body, ITemplateModel templateModel)
     {
-        var emailMessageResult = TemplatedEmailMessage.Create(recipient,subject,body,templateModel,_defaultSenderEmail);
+        var emailMessageResult = TemplatedEmailMessage.Create(recipient, subject, body, templateModel, _defaultSenderEmail);
         return await SendMessageAsync(emailMessageResult);
     }
 
@@ -120,7 +119,7 @@ internal class EmailMessageService : IEmailMessageService
 
     public async Task<Result<string>> SendMessageWithBaseTemplateAsync(Email recipient, string subject, string body, string baseTemplate, ITemplateModel templateModel, string tag)
     {
-        var emailMessageResult = TemplatedEmailMessage.Create(recipient, subject, body, baseTemplate, templateModel, _defaultSenderEmail,tag);
+        var emailMessageResult = TemplatedEmailMessage.Create(recipient, subject, body, baseTemplate, templateModel, _defaultSenderEmail, tag);
         return await SendMessageAsync(emailMessageResult);
     }
 
@@ -138,7 +137,7 @@ internal class EmailMessageService : IEmailMessageService
         var recipients = new List<Email>();
         foreach (var recipient in emailRecipients)
         {
-            if (IsAllowedDomain(recipient.Value) || (IsAllowedEmail(recipient.Value)))
+            if (IsAllowedDomain(recipient.Value) || IsAllowedEmail(recipient.Value))
             {
                 recipients.Add(recipient);
             }

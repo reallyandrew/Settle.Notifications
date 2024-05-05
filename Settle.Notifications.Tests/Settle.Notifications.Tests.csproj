@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Settle.Notifications\Settle.Notifications.csproj" />
+    <ProjectReference Include="..\Settle.Notifications.Core\Settle.Notifications.csproj" />
   </ItemGroup>
 
   <ItemGroup>

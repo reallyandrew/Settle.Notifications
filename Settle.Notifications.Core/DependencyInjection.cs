@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Settle.Notifications.Emails;
 
 namespace Settle.Notifications;
 public static class DependencyInjection

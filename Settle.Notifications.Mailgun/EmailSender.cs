@@ -5,6 +5,7 @@ using Settle.Notifications.Core;
 using Settle.Notifications.Core.Exceptions;
 using Settle.Notifications.Core.Shared;
 using Settle.Notifications.Core.ValueObjects;
+using Settle.Notifications.Emails;
 using System.Net;
 using System.Text;
 

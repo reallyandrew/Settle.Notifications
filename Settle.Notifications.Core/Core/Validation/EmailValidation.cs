@@ -11,7 +11,7 @@ public static class EmailValidation
     /// <returns></returns>
     internal static bool IsValidEmailTestRegEx(this string email)
     {
-        RegExTimeout = TimeSpan.FromMicroseconds(1);
+        RegExTimeout = TimeSpan.FromMilliseconds(1);
         return email.IsValidEmail();
     }
     /// <summary>

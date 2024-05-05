@@ -1,6 +1,6 @@
-﻿using Settle.Notifications.Core;
-using Settle.Notifications.Core.Shared;
+﻿using Settle.Notifications.Core.Shared;
 using Settle.Notifications.Core.ValueObjects;
+using Settle.Notifications.Emails;
 
 namespace Settle.Notifications.Templates;
 public class TemplatedEmailMessage : EmailMessage
