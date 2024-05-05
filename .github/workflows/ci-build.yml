@@ -3,6 +3,9 @@
 
 name: CI Build
 
+env:
+  CONFIGURATION: Release
+
 on:
   push:
     branches: [ "main" ]
