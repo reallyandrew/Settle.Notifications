@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: windowa-latest
+    runs-on: windows-latest
 
     steps:
     - name: Set up JDK 17
