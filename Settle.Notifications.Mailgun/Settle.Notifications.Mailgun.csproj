@@ -4,6 +4,15 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <PackageReleaseNotes>Initial preview release</PackageReleaseNotes>
+	  <Title>Settle.Notifications.Mailgun</Title>
+	  <Authors>reallyandrew</Authors>
+	  <Description>Library for Settle.Notifications which enables sending of email via Mailgun API.</Description>
+	  <Copyright>Andrew Settle</Copyright>
+	  <PackageProjectUrl>https://github.com/reallyandrew/Settle.Notifications</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/reallyandrew/Settle.Notifications</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
