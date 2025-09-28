@@ -13,6 +13,8 @@
     <PackageProjectUrl>https://github.com/reallyandrew/Settle.Notifications</PackageProjectUrl>
     <RepositoryUrl>https://github.com/reallyandrew/Settle.Notifications</RepositoryUrl>
     <PackageReleaseNotes>Initial version</PackageReleaseNotes>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
