@@ -9,12 +9,12 @@
 		<Title>Settle.Notifications.Core</Title>
 		<Authors>reallyandrew</Authors>
 		<Description>Core library for Settle.Notifications which enables sending of email and SMS notifications.</Description>
-		<Copyright>(c) Andrew Settle 2024</Copyright>
+		<Copyright>(c) Andrew Settle 2025</Copyright>
 		<PackageProjectUrl>https://github.com/reallyandrew/Settle.Notifications</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/reallyandrew/Settle.Notifications</RepositoryUrl>
-		<Version>0.1.1-alpha1</Version>
+		<Version>0.2.1-alpha1</Version>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
-		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+		<TargetFramework>net8.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
 		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
@@ -35,10 +35,9 @@
 	  <ProjectReference Include="..\Settle.Notifications.Configuration\Settle.Notifications.Configuration.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-	  <None Update="readme.md">
+	  <None Include="readme.md">
 	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <PackagePath>/</PackagePath>
 	  </None>
 	</ItemGroup>
 </Project>

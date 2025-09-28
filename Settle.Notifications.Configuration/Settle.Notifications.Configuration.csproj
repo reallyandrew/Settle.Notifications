@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>Settle.Notifications.Configuration</Title>
-    <Version>1.0.0</Version>
+    <Version>2.0.0</Version>
     <Authors>reallyandrew</Authors>
     <Description>Configuration package for Settle.Notifications</Description>
-    <Copyright>(c) Andrew Settle 2024</Copyright>
+    <Copyright>(c) Andrew Settle 2025</Copyright>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/reallyandrew/Settle.Notifications</PackageProjectUrl>
     <RepositoryUrl>https://github.com/reallyandrew/Settle.Notifications</RepositoryUrl>
