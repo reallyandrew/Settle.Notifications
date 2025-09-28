@@ -41,6 +41,7 @@
 	  <None Update="readme.md">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
 </Project>
